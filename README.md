@@ -19,7 +19,7 @@ The simplest web server you can run is the one [built into PHP](http://php.net/m
 
     php -S localhost:8000
     
-Another option is to run it through MAMP. CD to your MAMP document root and either copy the example files there, or create a symbolic link:
+Another option is to run it through [MAMP](http://www.mamp.info/en/index.html). CD to your MAMP document root and either copy the example files there, or create a symbolic link:
 
     ln -s /path/to/twitter-signon-example
 
