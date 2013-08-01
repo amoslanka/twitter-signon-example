@@ -3,6 +3,10 @@ Twitter Signon Example
 
 Provides a sample implementation of an ajax-y Twitter Signon process, though its not actually ajax-y at all. Since the Oauth authentication requires handling by the php server, a new window is opened, which carries out the authentication and then sends its important information back to the opener window before closing itself. 
 
+### Twitter Application
+
+A twitter application is required to run this example. [Create one](https://dev.twitter.com/apps) on your own twitter account. The consumer key and consumer secret values that are generated will be used in configuration of this example.
+
 ### Env
 
 After running `cp Env.example .env` in a terminal, be sure to set the environment variables it contains before running the page. 
