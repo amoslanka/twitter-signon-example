@@ -7,9 +7,21 @@ Provides a sample implementation of an ajax-y Twitter Signon process, though its
 
 After running `cp Env.example .env` in a terminal, be sure to set the environment variables it contains before running the page. 
 
-	TWITTER_CONSUMER_KEY
-	TWITTER_CONSUMER_SECRET
-	ROOT_URL
+    TWITTER_CONSUMER_KEY
+    TWITTER_CONSUMER_SECRET
+    ROOT_URL
+
+### Run
+
+To run the example, you'll need to run a php web server in the project directory or wherever, so long as the page is loaded in a browser through a web server. The `ROOT_URL` env var will have to match the root url for accessing the index.html page.
+
+The simplest web server you can run is the one [built into PHP](http://php.net/manual/en/features.commandline.webserver.php), but you'll have to have version >= 5.4.x. 
+
+    php -S localhost:8000
+    
+Another option is to run it through MAMP. CD to your MAMP document root and either copy the example files there, or create a symbolic link:
+
+    ln -s /path/to/twitter-signon-example
 
 ### Todos
 
