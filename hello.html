@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Twitter Signin Example</title>
+        <title>Twitter Signin Example using Hello.js</title>
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
@@ -27,13 +27,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="brand" href="#">Twitter Signin Example</a>
+              <a class="brand" href="#">Twitter Signin Example using Hello.js</a>
               <div class="nav-collapse collapse">
                 <ul class="nav">
                   <!-- <li class="active"><a href="#">Home</a></li> -->
                   <!-- <li><a href="#about">About</a></li> -->
                   <!-- <li><a href="#contact">Contact</a></li> -->
                   <li><a href="#" class="signin">Sign In</a></li>
+                  <li><a href="#" class="signout">Sign Out</a></li>
                 </ul>
               </div><!--/.nav-collapse -->
             </div>
@@ -41,47 +42,62 @@
         </div>
 
         <div class="container">
-
-            
-
+            <div class="alert">Using Hello.js requires registration of the Twitter Application with <a href="https://auth-server.herokuapp.com" target="_blank">auth-server.herokuapp.com</a>, which it uses as an oauth proxy.</div>
             <div class="result"></div>
-
         </div>
-
-
-
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 
+        <script src="js/vendor/hello.js"></script>
         <script src="js/plugins.js"></script>
+
         <script type="text/javascript">
-            $(document).ready(function(){
+          $(document).ready(function(){
 
-                window.signin = function () {
-                    var popup = window.open("auth/twitter.php", "twitter_signin");
+            // http://adodson.com/hello.js
 
-                    // Set up a callback for our popup to send its information home.
-                    window.twitter_signin_callback = function(data) {
+            hello.init({ twitter: 'Ir3cXiw2hjGGgHAdyM1g' });
 
-                        // Destroy the callback so we are not leaving methods out there 
-                        // in the global space.
-                        window.twitter_signin_callback = null;
+            $('a.signin').click(function(event){
+              hello.login('twitter');
+              return false;
+            });
 
-                        // (assuming success)
-                        $('.result').html('<div class="alert">You are logged in as ' + (data.name || data.screen_name) + '</div>');
+            $('a.signout').click(function(event){
+              hello.logout('twitter');
+              $('.result').empty()
+              return false;
+            });
 
-                    }
-                };
+            hello.subscribe('auth.login', function(auth) {
 
-                $('a.signin').click(function(event){
-                    signin();
-                    return false;
-                });
+              hello.api('account/verify_credentials.json', function(data,y,z){
+                window.x = data
+
+                if (data.error) {
+
+                  $('.result').html(
+                    '<div class="alert alert-error">' +
+                    'Error: <pre>' + JSON.stringify(data.error) + '</pre>'
+                  );                  
+
+                } else {
+
+                  $('.result').html(
+                    '<div class="alert alert-success">' +
+                    '<img class="img-circle" src="' + data.profile_image_url + '">' + 
+                    'You are logged in as ' + (data.name || data.screen_name) + '</div>'
+                  );
+
+                }
+
+              });
 
             });
-        </script>
 
+          });
+        </script>
     </body>
 </html>

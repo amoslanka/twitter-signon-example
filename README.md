@@ -33,3 +33,13 @@ Another option is to run it through [MAMP](http://www.mamp.info/en/index.html). 
 - Wrap errors up in proper objects to be sent back to the parent frame when something goes wrong in the auth process.
 - Capture cancelation, reply to parent frame with that info
 - Sign out functionality
+
+Twitter Signon Example Using Hello.js
+=====================================
+
+A second example uses [Hello.js](http://adodson.com/hello.js), "A client-side Javascript SDK for authenticating with OAuth2 (and OAuth1 with a oauth proxy)". The current example uses OAuth1, and therefore the oauth proxy provided at [https://auth-server.herokuapp.com](https://auth-server.herokuapp.com).
+
+See `hello.html`
+
+
+
